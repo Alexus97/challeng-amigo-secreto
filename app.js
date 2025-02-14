@@ -3,7 +3,8 @@ let amigos = [];
 let listaAmigos = document.getElementById('listaAmigos');
 
 let result = document.getElementById('resultado');
-console.log(result);
+
+
 
 
 // let amigoSecreto = amigoSorteado();
@@ -71,7 +72,7 @@ function sortearAmigo() {
 }
 
 function amigoSorteado() {
-    return Math.floor(Math.random() * amigos.length)+1;
+    return Math.floor(Math.random() * amigos.length);
 
 }
 
