@@ -1,7 +1,11 @@
+// const regex = /^[\p{Ll}\p{Lu}]+$/;
+// const REGEX_ES_NOMBRE = /^[a-zA-Z]+$/;
+const REGEX_ES_NOMBRE = /^[A-záéíóúñü]+(?:[\s-][A-záéíóúñü]+)*$/;
+
 let amigos = [];
 
 let listaAmigos = document.getElementById('listaAmigos');
-
+// listaAmigoSecreto();
 let result = document.getElementById('resultado');
 
 
@@ -10,12 +14,15 @@ let result = document.getElementById('resultado');
 // let amigoSecreto = amigoSorteado();
 //let amigoSecreto = sortearAmigo();
 function agregarAmigo () {
-    let amigo = document.getElementById('amigo').value;
+    let amigo = document.getElementById('amigo').value.trim();
     
     console.log(amigo);
     // console.log(typeof(amigo));
     if(amigo == ''){
         alert('Debe ingresar un nombre');
+    } else if( !REGEX_ES_NOMBRE.test( amigo ) ){
+        alert('Debe ingresar un nombre valido');
+    
     } else {
         
         amigos.push(amigo);
@@ -65,14 +72,20 @@ function sortearAmigo() {
         result.textContent = 'No hay amigos para sortear';
         return;
     } else {
-        let amigoSecreto = amigos[amigoSorteado()];
+        let user_index= amigoSorteado();
+        let amigoSecreto = amigos[user_index];
         result.textContent = `El amigo secreto sorteado es: ${amigoSecreto}`;
         listaAmigos.textContent = '';
+        console.log(amigoSecreto);
+        console.log(user_index);
     }
+    // console.log(sortearAmigo());
 }
+
 
 function amigoSorteado() {
-    return Math.floor(Math.random() * amigos.length);
-
+    let sortear = Math.floor(Math.random() * amigos.length );
+    return sortear;
 }
+
 
